@@ -1,0 +1,812 @@
+<!DOCTYPE html><!-- Last Published: Thu Sep 11 2025 15:29:30 GMT+0000 (Coordinated Universal Time) --><html data-wf-domain="www.cyberkongz.com" data-wf-page="68a36eade111567f347ec185" data-wf-site="685c17609757254743330582" lang="en"><head><meta charset="utf-8"/><title>Privacy Policy</title><meta content="width=device-width, initial-scale=1" name="viewport"/><link href="https://cdn.prod.website-files.com/685c17609757254743330582/css/cyberkongz.webflow.shared.d66017f13.css" rel="stylesheet" type="text/css"/><script type="text/javascript">!function(o,c){var n=c.documentElement,t=" w-mod-";n.className+=t+"js",("ontouchstart"in o||o.DocumentTouch&&c instanceof DocumentTouch)&&(n.className+=t+"touch")}(window,document);</script><link href="https://cdn.prod.website-files.com/685c17609757254743330582/685c187f6884ca5d2536d60f_icon-32.png" rel="shortcut icon" type="image/x-icon"/><link href="https://cdn.prod.website-files.com/685c17609757254743330582/685c1882dcebbc768cf02cf4_icon-256.png" rel="apple-touch-icon"/><script async="" src="https://www.googletagmanager.com/gtag/js?id=G-81DBL7GXVE"></script><script type="text/javascript">window.dataLayer = window.dataLayer || [];function gtag(){dataLayer.push(arguments);}gtag('js', new Date());gtag('set', 'developer_id.dZGVlNj', true);gtag('config', 'G-81DBL7GXVE');</script><!-- GSAP (one load, all pages) -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/TextPlugin.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js" defer></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollToPlugin.min.js" defer></script>
+
+<style>
+  /* ------------------------------
+     Page fade overlay (optional)
+  ------------------------------ */
+  #page-fade {
+    position: fixed;
+    inset: 0;
+    background: #000;
+    opacity: 0;                 /* idle: hidden */
+    pointer-events: none;
+    transition: opacity 300ms ease;
+    z-index: 2147483647;        /* above everything */
+  }
+  #page-fade.active {
+    opacity: 1;                 /* visible when active */
+    pointer-events: auto;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    #page-fade { transition: none; }
+  }
+
+  /* ------------------------------
+     Fluid type + base sizing
+  ------------------------------ */
+  html { font-size: 1.125rem; }
+  @media (max-width:1920px) { html { font-size: calc(0.625rem + 0.4166666667vw); } }
+  @media (max-width:1440px) { html { font-size: calc(0.8126951093rem + 0.2081165453vw); } }
+  @media (max-width:479px)  { html { font-size: calc(0.7497384937rem + 0.4184100418vw); } }
+
+  /* Min font size clamps */
+  @media (min-width:390px) and (max-width:1439px) {
+    body { font-size: calc(0.1906577693vw + 0.8285271687em); }
+  }
+  @media (max-width:389px) {
+    body { font-size: 0.8748808389em; }
+  }
+
+  /* Utility: disable pointer events on wrappers that should pass through */
+  .scroll-wrap,
+  .nav-shadow { pointer-events: none; }
+
+  /* Selection styles */
+  ::selection {
+    background-color: rgba(63,73,81,0.5);
+    color: #fff;
+    -webkit-text-fill-color: #DCE4F1;
+    -webkit-text-stroke-color: transparent;
+  }
+
+  /* Optional mask for Safari clipping on fancy buttons */
+  .fancy-button {
+    -webkit-mask-image: -webkit-radial-gradient(white, black);
+  }
+
+  /* ------------------------------
+     Splide: enable horizontal swipes
+  ------------------------------ */
+  .splide__track,
+  .splide__list,
+  .splide__slide {
+    touch-action: pan-x !important;
+    -webkit-user-select: none;
+  }
+  .splide__list,
+  .splide__slide {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+  /* If slider sits inside a non-interactive wrapper, re-enable it */
+  .scroll-wrap .splide { pointer-events: auto; }
+
+  /* ------------------------------
+     Scene blend modes
+  ------------------------------ */
+  .ck-bg .scene.overlay canvas { mix-blend-mode: overlay; }
+  .ck-bg .scene.hardlight canvas { mix-blend-mode: hard-light; }
+
+  /* ------------------------------
+     Table (glass panel) styles
+  ------------------------------ */
+  table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 2em 0;
+    font-family: Twk Everett, Arial, sans-serif;
+    font-size: 0.75rem;
+    line-height: 1.45;
+    color: var(--fg--default);
+
+    border: 1px solid var(--border--emphasized);
+    border-radius: 1em;
+    overflow: hidden;
+
+    background-image:
+      radial-gradient(circle farthest-corner at 0% 0%, #ffffff08, var(--bg--panel)),
+      url("https://cdn.prod.website-files.com/685c17609757254743330582/685c1760975725474333058d_noise.png"),
+      radial-gradient(circle farthest-corner at 0% 0%, var(--bg--emphasized), var(--bg--default));
+    background-position: 0 0, 50%, 0 0;
+    background-size: auto, 150px, auto;
+    backdrop-filter: blur(80px);
+    -webkit-backdrop-filter: blur(80px);
+  }
+
+  /* Head */
+  thead { background: var(--bg--muted); }
+  thead th {
+    text-align: left;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    color: var(--text--fg);
+    padding: 0.9em 1.1em;
+    border-bottom: 1px solid var(--border--emphasized);
+    white-space: nowrap;
+  }
+
+  /* Body cells */
+  td {
+    padding: 0.85em 1.1em;
+    border-bottom: 1px solid var(--border--default);
+    vertical-align: top;
+  }
+
+  /* Links */
+  td a {
+    color: var(--blue--fg);
+    text-decoration: underline;
+    transition: color .2s;
+  }
+  td a:hover { color: var(--blue--emphasis); }
+
+  /* Rows */
+  tbody tr {
+    background: var(--bg--panel);
+    transition: background-color .15s ease;
+  }
+  tbody tr:nth-child(odd) {
+    background: linear-gradient(#ffffff05, #ffffff05), var(--bg--panel);
+  }
+  tbody tr:hover { background: var(--bg--muted); }
+
+  /* Last row cleanup */
+  tbody tr:last-child td { border-bottom: none; }
+
+  /* Rounded corners */
+  thead th:first-child { border-top-left-radius: 1em; }
+  thead th:last-child  { border-top-right-radius: 1em; }
+  tbody tr:last-child td:first-child { border-bottom-left-radius: 1em; }
+  tbody tr:last-child td:last-child  { border-bottom-right-radius: 1em; }
+
+  /* Responsive stack */
+  @media (max-width:600px) {
+    table, thead, tbody, th, td, tr { display: block; width: 100%; }
+    thead { display: none; }
+
+    table tr {
+      margin: 0 0 0 0;
+      padding: 0.7em;
+      border: 1px solid var(--border--default);
+      border-radius: .8em;
+      background: var(--bg--panel);
+    }
+    td {
+      border: none;
+      padding: 0.3em 0;
+      display: grid;
+      grid-template-columns: 0ch 1fr;
+      gap: .8em;
+    }
+    td::before {
+      content: attr(data-label);
+      font-family: Tronica Mono, Arial, sans-serif;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+      font-size: .78rem;
+      color: var(--text--fg_subtle);
+    }
+  }
+</style></head><body class="body"><div class="navbar"><div class="w-layout-blockcontainer nav-container w-container"><a href="index.html" class="brand w-nav-brand"><img loading="lazy" src="https://cdn.prod.website-files.com/685c17609757254743330582/685c30cb547ab425d027ce49_ck-icon.svg" alt="" class="brand-logo"/></a><div class="main-nav-links"><a href="index.html" class="nav-item">Home</a><a href="https://app.cyberkongz.com/" target="_blank" class="nav-cta w-inline-block"><div class="nav-btn-text">Launch App</div><div class="icon w-embed"><svg width="100%" height="100%" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M4.08325 4.0835H9.91659M9.91659 4.0835V9.91683M9.91659 4.0835L4.08325 9.91683" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></a><a href="about" class="nav-item">About</a><a href="kong" class="nav-item">$KONG</a><a href="community" class="nav-item">Community</a><div data-w-id="56dfdc7b-584f-b31a-8848-4df13ed4895a" class="more nav-item"><div data-w-id="f77e2873-05ce-49c4-b44b-a5739badc025" class="more-btn-wrap"><div class="more-label">More</div><div class="icon w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6 9L12 15L18 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+</svg></div></div><div class="more-menu-space"></div><div class="more-menu"><a href="collections" class="subnav-item">Collections</a><a href="https://shop.cyberkongz.com/" target="_blank" class="subnav-item">Shop</a><a href="https://kongzmart.cyberkongz.com/" target="_blank" class="subnav-item">KongzMart</a><div class="more-btm-menu font-2xs mono"><a href="https://ens.cyberkongz.com/" target="_blank" class="more-btm-link">ENS</a><a href="https://guardian.cyberkongz.com/" target="_blank" class="more-btm-link">Guardian</a><a href="press-kit" class="more-btm-link">Press Kit</a><a href="https://bridge.cyberkongz.com/" target="_blank" class="more-btm-link">Bridge</a></div></div></div></div><div data-w-id="56dfdc7b-584f-b31a-8848-4df13ed4896f" class="menu-button"><div class="icon menu-open w-embed"><svg width="100%" height="100%" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M13 25.75H68" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+<path d="M13 55.25H68" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+</svg></div><div class="icon menu-close w-embed"><svg width="100%" height="100%" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M21 20L59.8909 58.8909" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+<path d="M21 59L59.8909 20.1091" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+</svg></div></div></div><div class="shadow-top-sticky"></div><div class="sideline right"></div><div class="sideline"></div></div><div class="noise fixed"></div><section class="main-section overflow-visible"><div class="w-layout-blockcontainer container w-container"><div class="main overflow-visible"><div class="terms-nav"><a href="terms-of-service" class="font-md bold">Terms of Service</a><a href="privacy-policy" aria-current="page" class="font-md bold w--current">Privacy Policy</a><a href="cookies-policy" class="font-md bold">Cookies Policy</a></div><div class="block content-scroll-page"><div id="section-nav" class="section-nav"><div class="sticky-nav"><a href="privacy-policy#" class="font-sm bold section-nav-item">Section Nav Item</a></div></div><div class="content-scroll-content"><div class="content text-content"><div class="w-embed"><h1 class="h3" id="privacy-policy">Privacy policy</h1>
+<p><strong>Effective Date: August 1, 2023</strong></p>
+<p>CyberKongz® ("us", "we", "our") is committed to protecting your privacy across the globe. This Privacy Policy outlines how we collect, use, and
+protect your data in compliance with various data protection laws, including the General Data Protection Regulation (GDPR), the California Consumer
+Privacy Act (CCPA), the Asia-Pacific Privacy Laws, and others.</p>
+<p>By using our website, you consent to the practices described in this Privacy Policy.</p>
+<h2 id="information-we-collect" class="h4">Information We Collect.</h2>
+<p>While CyberKongz does not store personal data, we may collect non-personal information (or "usage data") including your IP address, browser type,
+operating system, the date and time of your visit, and other similar data. Usage Data may also include pages visited, time spent, unique device
+identifiers, and diagnostic data. When you access our website via a mobile device, this Usage Data may include device type, mobile device unique ID,
+IP address, mobile operating system, mobile browser, unique device identifiers and other diagnostic data. For information regarding Cyberkongz® Cookie
+Policy, including options for managing your cookie preferences, please visit:
+<a href="https://www.cyberkongz.com/terms/cookies-policy" target="_blank" rel="noopener noreferrer">https://www.cyberkongz.com/terms/cookies-policy</a></p>
+<h2 id="purpose-of-data-collection,-processing-and/or-retention" class="h4">Purpose of Data Collection, Processing and/or Retention.</h2>
+<p>Cyberkongz® may only collect, process, or retain your personal information for the purposes that you have consented to or that are within our
+legitimate interests. We delete or anonymize data when it is no longer needed.</p>
+<h2 id="sensitive-personal-information" class="h4">Sensitive Personal Information.</h2>
+<p>Safeguarding your privacy to the maximum extent possible is our goal at Cyberkongz®. Accordingly, we do not process sensitive personal information
+unless we have obtained your explicit consent, nor do we store your personal information on our servers. When you use CyberKongz website, however,
+certain Personal Information such as IP address, user - agent information (which is automatically sent by your web browser and may include device
+type) and information collected by cookies and other similar technologies may be automatically collected. For information regarding Cyberkongz® Cookie
+Policy, including options for managing your cookie preferences, please visit:
+<a href="https://www.cyberkongz.com/terms/cookies-policy" target="_blank" rel="noopener noreferrer">https://www.cyberkongz.com/terms/cookies-policy</a></p>
+<h2 id="legal-basis-for-processing" class="h4">Legal Basis for Processing.</h2>
+<p>Our data processing is based on various legal bases, including user consent, contractual necessity, compliance with legal obligations, and legitimate
+interests, as defined by relevant data protection laws in different regions.</p>
+<h2 id="how-we-use-your-information" class="h4">How We Use Your Information.</h2>
+<p>We use your non-personal information for the following purposes:</p>
+<ul>
+<li>Providing and improving our services.</li>
+<li>Communicating with you about our products and services.</li>
+<li>Responding to inquiries and support requests.</li>
+<li>Analyzing and enhancing our website and services.</li>
+</ul>
+<h2 id="cookies-and-consent" class="h4">Cookies and Consent.</h2>
+<p>We use cookies and similar technologies to enhance your website experience. Some cookies are essential, while others require your consent. For
+information regarding Cyberkongz® Cookie Policy, including options for managing your cookie preferences, please visit:
+<a href="https://www.cyberkongz.com/terms/cookies-policy" target="_blank" rel="noopener noreferrer">https://www.cyberkongz.com/terms/cookies-policy</a></p>
+<h2 id="data-security" class="h4">Data Security.</h2>
+<p>Cyberkongz® is committed to safeguarding your personal information and has implemented reasonable measures to prevent unauthorized access, use, or
+disclosure of your data. While we take every precaution to ensure the security of your information, it's important to note that no online transmission
+or storage can be guaranteed to be entirely secure. By using CyberKongz' website, you acknowledge and accept that there are inherent risks associated
+with online data transmission and storage, and you agree to proceed with this understanding.</p>
+<h2 id="international-data-transfers" class="h4">International Data Transfers.</h2>
+<p>Your data may be transferred internationally. Accordingly, Cyberkongz® implements reasonably appropriate safeguards to protect your data, as required
+by applicable laws.</p>
+<h2 id="limitation-of-liability" class="h4">Limitation of Liability.</h2>
+<p>To the fullest extent permissible under applicable law, CyberKongz, its officers, directors, employees, agents, affiliates, and partners shall not be
+liable for any direct, indirect, incidental, special, consequential, or exemplary damages, including but not limited to, damages for loss of profits,
+goodwill, use, data, or other intangible losses arising out of or in connection with your use of our website or services. In jurisdictions where
+limitations of liability are not permitted to such extent, our liability shall be limited to the maximum extent permitted by law. Your use of the
+CyberKongz website and services is at your own risk, and you agree that this limitation of liability is a fundamental basis of the agreement between
+you and CyberKongz.</p>
+<h2 id="third-party-links-and-service-providers" class="h4">Third-Party Links and Service Providers.</h2>
+<p>To enhance your experience and convenience, our website may contain links to third-party websites. We want to emphasize, however, that we are not
+responsible for the privacy practices or content of these sites. Additionally, we may collaborate with third-party companies ("Service Providers") to
+improve our services. These Service Providers may access your Personal Data solely for performing tasks on our behalf, and they are bound by
+confidentiality agreements. It's important to remember that your interactions with third-party websites are subject to their own privacy policies.</p>
+<h2 id="children's-privacy" class="h4">Children's Privacy.</h2>
+<p>Our website is not intended for users under the age of 13. We do not knowingly collect personal information from children under 13.</p>
+<h2 id="individual-rights" class="h4">Individual Rights.</h2>
+<p>You have the right to access, rectify, and delete your personal information. You may also object to or restrict processing, and request data
+portability. To exercise these rights, please contact us at <a href="mailto:privacy@cyberkongz.com" target="_blank" rel="noopener noreferrer">privacy@cyberkongz.com</a>.</p>
+<h2 id="complaints-and-supervisory-authority" class="h4">Complaints and Supervisory Authority.</h2>
+<p>If you believe we haven't complied with applicable data protection laws, you can lodge a complaint with a supervisory authority. Contact details for
+supervisory authorities can be found in relevant data protection regulations.</p>
+<h2 id="updates-to-this-policy" class="h4">Updates to this Policy.</h2>
+<p>We may update this Privacy Policy periodically. We will notify you of significant changes through email or prominent notices on our website. Your
+continued use of our website constitutes your acceptance of the updated Privacy Policy.</p>
+<h2 id="conclusion-and-contact-information" class="h4">Conclusion and Contact Information.</h2>
+<p>At CyberKongz, we prioritize the security and confidentiality of your information and are fully committed to upholding the standards outlined herein.</p>
+<p>For questions or concerns about this Privacy Policy, contact us at <a href="mailto:privacy@cyberkongz.com" target="_blank" rel="noopener noreferrer">privacy@cyberkongz.com</a>.</p>
+<p>We Thank You for Your Trust</p></div></div></div></div></div></div></section><div class="footer"><div id="w-node-ff26563a-b7d7-efaf-57ba-1142313eae01-313eae00" class="footer-copyright label-sm text-muted"><div>©2025 CyberKongz</div><a href="terms-of-service" class="nav-link text-muted">Terms</a></div><div class="footer-links label-sm"><a href="https://shop.cyberkongz.com/" target="_blank" class="nav-link text-muted">Shop</a><a href="https://ens.cyberkongz.com/" target="_blank" class="nav-link text-muted">Ens</a><a href="https://guardian.cyberkongz.com/" target="_blank" class="nav-link text-muted">Guardian</a><a href="https://bridge.cyberkongz.com/" target="_blank" class="nav-link text-muted">Bridge</a><div class="socials"><a href="https://x.com/cyberkongz" target="_blank" class="social-btn text-muted w-inline-block"><div class="social__item x w-embed"><svg width="100%" height="100%" viewBox="0 0 18 18" xmlns="http://www.w3.org/2000/svg">
+<path d="M1.04145 1L7.60496 9.77603L1 16.9113H2.48651L8.26914 10.6643L12.9413 16.9113H18L11.0672 7.64165L17.215 1H15.7285L10.403 6.75341L6.1001 1H1.04145ZM3.22747 2.09497H5.55143L15.8136 15.8162H13.4897L3.22747 2.09497Z" fill="currentColor"/>
+</svg></div></a><a href="https://discord.com/invite/cyberkongz" target="_blank" class="social-btn text-muted w-inline-block"><div class="social__item w-embed"><svg width="100%" height="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M19.27 5.33C17.94 4.71 16.5 4.26 15 4C14.9736 4.00038 14.9485 4.01116 14.93 4.03C14.75 4.36 14.54 4.79 14.4 5.12C12.809 4.88015 11.191 4.88015 9.6 5.12C9.46 4.78 9.25 4.36 9.06 4.03C9.05 4.01 9.02 4 8.99 4C7.49 4.26 6.06 4.71 4.72 5.33C4.71 5.33 4.7 5.34 4.69 5.35C1.97 9.42 1.22 13.38 1.59 17.3C1.59 17.32 1.6 17.34 1.62 17.35C3.42 18.67 5.15 19.47 6.86 20C6.89 20.01 6.92 20 6.93 19.98C7.33 19.43 7.69 18.85 8 18.24C8.02 18.2 8 18.16 7.96 18.15C7.39 17.93 6.85 17.67 6.32 17.37C6.28 17.35 6.28 17.29 6.31 17.26C6.42 17.18 6.53 17.09 6.64 17.01C6.66 16.99 6.69 16.99 6.71 17C10.15 18.57 13.86 18.57 17.26 17C17.28 16.99 17.31 16.99 17.33 17.01C17.44 17.1 17.55 17.18 17.66 17.27C17.7 17.3 17.7 17.36 17.65 17.38C17.13 17.69 16.58 17.94 16.01 18.16C15.97 18.17 15.96 18.22 15.97 18.25C16.29 18.86 16.65 19.44 17.04 19.99C17.07 20 17.1 20.01 17.13 20C18.85 19.47 20.58 18.67 22.38 17.35C22.4 17.34 22.41 17.32 22.41 17.3C22.85 12.77 21.68 8.84 19.31 5.35C19.3 5.34 19.29 5.33 19.27 5.33ZM8.52 14.91C7.49 14.91 6.63 13.96 6.63 12.79C6.63 11.62 7.47 10.67 8.52 10.67C9.58 10.67 10.42 11.63 10.41 12.79C10.41 13.96 9.57 14.91 8.52 14.91ZM15.49 14.91C14.46 14.91 13.6 13.96 13.6 12.79C13.6 11.62 14.44 10.67 15.49 10.67C16.55 10.67 17.39 11.63 17.38 12.79C17.38 13.96 16.55 14.91 15.49 14.91Z" fill="currentColor"/>
+</svg></div></a></div></div></div><div data-w-id="626c6628-2362-4e0d-c217-d7fb9348480f" style="display:flex;opacity:1" class="page-loader"><div data-w-id="626c6628-2362-4e0d-c217-d7fb93484810" style="opacity:0" class="glasses loading"><img src="https://cdn.prod.website-files.com/685c17609757254743330582/685c30cb547ab425d027ce49_ck-icon.svg" loading="lazy" alt="" class="loader-img"/></div></div><script src="https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=685c17609757254743330582" type="text/javascript" integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script><script src="https://cdn.prod.website-files.com/685c17609757254743330582/js/webflow.schunk.36b8fb49256177c8.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/685c17609757254743330582/js/webflow.schunk.dcfb3507dfd5a22e.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/685c17609757254743330582/js/webflow.2233c8d2.e58d3bb85815c9b0.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/gsap/3.13.0/gsap.min.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/gsap/3.13.0/SplitText.min.js" type="text/javascript"></script><script src="https://cdn.prod.website-files.com/gsap/3.13.0/ScrollTrigger.min.js" type="text/javascript"></script><style>
+  html {
+    transform: none !important;
+    will-change: auto !important;
+  }
+</style>
+
+<script type="text/javascript">
+!function(){
+  if(!window.UnicornStudio){
+    window.UnicornStudio = { isInitialized: !1 };
+    var s = document.createElement("script");
+    s.src = "https://cdn.jsdelivr.net/gh/hiunicornstudio/unicornstudio.js@v1.4.26/dist/unicornStudio.umd.js";
+    s.onload = function(){
+      if(!window.UnicornStudio.isInitialized){
+        UnicornStudio.init();
+        window.UnicornStudio.isInitialized = !0;
+      }
+    };
+    (document.head || document.body).appendChild(s);
+  }
+}();
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollToPlugin.min.js"></script>
+
+<script>
+(function () {
+  const GLIDE = 0.15;
+  const WHEEL_MULT = 3.25;
+  const KEY_STEP = 100;
+  const PAGE_STEP = 0.85;
+  const RESPECT_REDUCED = true;
+
+  const hasGSAP = () => !!(window.gsap && window.ScrollTrigger && window.ScrollToPlugin);
+  const inSplide = (t) => !!(t && (t.classList?.contains('splide') || t.closest?.('.splide')));
+  const isTouchDevice = () => matchMedia('(pointer: coarse)').matches || 'ontouchstart' in window;
+  const waitFor = (cond, cb) => cond() ? cb() : requestAnimationFrame(() => waitFor(cond, cb));
+
+  function findPrimaryScroller() {
+    const docScroller = document.scrollingElement || document.documentElement;
+    const htmlHidden = getComputedStyle(document.documentElement).overflowY.includes('hidden');
+    const bodyHidden = getComputedStyle(document.body).overflowY.includes('hidden');
+    if (!htmlHidden && !bodyHidden && (docScroller.scrollHeight > innerHeight + 2)) return window;
+
+    let best = null, bestScrollHeight = 0;
+    for (const el of document.querySelectorAll('body *')) {
+      const cs = getComputedStyle(el);
+      const scrollable = /(auto|scroll)/.test(cs.overflowY) && el.scrollHeight > el.clientHeight && el.clientHeight >= innerHeight * 0.6;
+      if (scrollable && el.scrollHeight > bestScrollHeight) { best = el; bestScrollHeight = el.scrollHeight; }
+    }
+    return best || window;
+  }
+
+  function isInsideAnotherScroller(el, primary) {
+    for (let n = el; n && n !== document.documentElement; n = n.parentElement) {
+      if (n === (primary === window ? null : primary)) break;
+      const cs = getComputedStyle(n);
+      if (/(auto|scroll)/.test(cs.overflowY) && n.scrollHeight > n.clientHeight) return true;
+    }
+    return false;
+  }
+
+  function normalizeWheelDelta(e) {
+    let d = e.deltaY;
+    if (e.deltaMode === 1) d *= 16;
+    else if (e.deltaMode === 2) d *= innerHeight;
+    return d * WHEEL_MULT;
+  }
+
+  waitFor(hasGSAP, () => {
+    if (RESPECT_REDUCED && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      gsap.registerPlugin(ScrollTrigger);
+      ScrollTrigger.refresh();
+      return;
+    }
+
+    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
+
+    const scroller = findPrimaryScroller();
+    const usesWindow = scroller === window;
+    const getScrollTop = () => usesWindow ? (document.scrollingElement || document.documentElement).scrollTop : scroller.scrollTop;
+    const getMaxScroll = () => {
+      const el = usesWindow ? (document.scrollingElement || document.documentElement) : scroller;
+      return Math.max(0, el.scrollHeight - innerHeight);
+    };
+    (usesWindow ? document.documentElement : scroller).style.scrollBehavior = 'auto';
+
+    let tween = null;
+    const clamp = (v, min, max) => Math.min(Math.max(v, min), max);
+    const goTo = (y, duration = GLIDE) => {
+      const dest = clamp(y, 0, getMaxScroll());
+      if (tween) tween.kill();
+      tween = gsap.to(usesWindow ? window : scroller, {
+        scrollTo: { y: dest, autoKill: false },
+        duration,
+        ease: 'power3.out',
+        overwrite: true,
+        onUpdate: ScrollTrigger.update,
+        onComplete: () => { tween = null; }
+      });
+    };
+
+    const onWheel = (e) => {
+      if (isTouchDevice()) return;
+      if (inSplide(e.target)) return;
+      if (isInsideAnotherScroller(e.target, usesWindow ? null : scroller)) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const delta = normalizeWheelDelta(e);
+      const velocityScale = Math.min(4, 1 + Math.abs(delta) / 400);
+      goTo(getScrollTop() + delta, GLIDE * velocityScale);
+    };
+
+    const onKeyDown = (e) => {
+      if (isTouchDevice()) return;
+      if (inSplide(e.target)) return;
+      let y = getScrollTop(), moved = true;
+      switch (e.code) {
+        case 'ArrowDown': y += KEY_STEP; break;
+        case 'ArrowUp':   y -= KEY_STEP; break;
+        case 'PageDown':  y += innerHeight * PAGE_STEP; break;
+        case 'PageUp':    y -= innerHeight * PAGE_STEP; break;
+        case 'Space':     y += (e.shiftKey ? -1 : 1) * innerHeight * PAGE_STEP; break;
+        case 'Home':      y = 0; break;
+        case 'End':       y = getMaxScroll(); break;
+        default: moved = false;
+      }
+      if (moved) { e.preventDefault(); e.stopPropagation(); goTo(y, GLIDE * 1.4); }
+    };
+
+    const onAnchor = (e) => {
+      if (inSplide(e.target)) return;
+      const a = e.target.closest('a[href^="#"]');
+      if (!a) return;
+      const id = a.getAttribute('href').slice(1);
+      const el = document.getElementById(id);
+      if (!el) return;
+      e.preventDefault(); e.stopPropagation();
+      const rectTop = el.getBoundingClientRect().top;
+      const startTop = getScrollTop();
+      goTo(startTop + rectTop, GLIDE * 1.2);
+    };
+
+    window.addEventListener('wheel', onWheel, { passive: false, capture: true });
+    window.addEventListener('keydown', onKeyDown, { passive: false, capture: true });
+    document.addEventListener('click', onAnchor, { passive: false, capture: true });
+    window.addEventListener('resize', () => ScrollTrigger.refresh(), { passive: true });
+
+    ScrollTrigger.refresh();
+  });
+})();
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const shadow = document.querySelector(".shadow-top-sticky");
+  if (!shadow) return;
+
+  const isHomePage = window.location.pathname === "/" || window.location.pathname === "/index.html";
+  shadow.style.transition = "opacity 0.3s ease";
+
+  if (isHomePage) {
+    shadow.style.opacity = "1";
+  } else {
+    shadow.style.opacity = "0";
+    window.addEventListener("scroll", () => {
+      shadow.style.opacity = (window.scrollY > 50) ? "1" : "0";
+    }, { passive: true });
+  }
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  gsap.utils.toArray(".animate-children").forEach((wrap) => {
+    const kids = Array.from(wrap.children);
+    if (!kids.length) return;
+
+    gsap.set(kids, { opacity: 0, willChange: "opacity" });
+
+    const enter = gsap.to(kids, {
+      opacity: 1,
+      duration: 0.7,
+      ease: "power2.inOut",
+      stagger: { each: 0.08, from: "start" },
+      paused: true,
+      onComplete: () => kids.forEach(k => (k.style.willChange = ""))
+    });
+
+    ScrollTrigger.create({
+      trigger: wrap,
+      start: "top 85%",
+      once: true,
+      onEnter: () => enter.play(0),
+      invalidateOnRefresh: true
+    });
+  });
+});
+</script>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  gsap.registerPlugin(ScrollTrigger);
+
+  const ROOTS = "h1,h2,h3,h4,h5,h6,p,li,blockquote";
+  const WORD_CLASS = "__reveal-word";
+
+  function wrapWords(el) {
+    const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, {
+      acceptNode(n) {
+        if (!n.nodeValue || !n.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+        if (n.parentElement && n.parentElement.closest("script,style,code,pre,[data-no-reveal]"))
+          return NodeFilter.FILTER_REJECT;
+        return NodeFilter.FILTER_ACCEPT;
+      }
+    });
+    const nodes = [];
+    while (walker.nextNode()) nodes.push(walker.currentNode);
+
+    for (const t of nodes) {
+      const parts = t.nodeValue.split(/(\s+)/);
+      const frag = document.createDocumentFragment();
+      for (const part of parts) {
+        if (/\s+/.test(part)) {
+          frag.appendChild(document.createTextNode(part));
+        } else {
+          const s = document.createElement("span");
+          s.className = WORD_CLASS;
+          s.textContent = part;
+          s.style.display = "inline-block";
+          frag.appendChild(s);
+        }
+      }
+      if (t.parentNode) t.parentNode.replaceChild(frag, t);
+    }
+  }
+
+  function wrapLines(el) {
+    const words = Array.from(el.querySelectorAll(`:scope .${WORD_CLASS}`));
+    if (!words.length) return [];
+
+    const lines = [];
+    let current = [];
+    let baseline = words[0].offsetTop;
+    const TOL = 2;
+
+    for (const w of words) {
+      const top = w.offsetTop;
+      if (Math.abs(top - baseline) <= TOL) {
+        current.push(w);
+      } else {
+        lines.push(current);
+        current = [w];
+        baseline = top;
+      }
+    }
+    if (current.length) lines.push(current);
+
+    if (lines.length === 1) return [];
+
+    const wrappers = [];
+    for (const line of lines) {
+      const first = line[0];
+      const last  = line[line.length - 1];
+
+      const range = document.createRange();
+      range.setStartBefore(first);
+      range.setEndAfter(last);
+
+      const wrap = document.createElement("span");
+      wrap.className = "reveal-line";
+      wrap.style.display = "inline-block";
+      wrap.style.verticalAlign = "baseline";
+      wrap.style.lineHeight = "inherit";
+      wrap.style.overflow = "visible";
+
+      range.surroundContents(wrap);
+      wrappers.push(wrap);
+    }
+    return wrappers;
+  }
+
+  if (!document.getElementById("reveal-line-css")) {
+    const style = document.createElement("style");
+    style.id = "reveal-line-css";
+    style.textContent = `.reveal-line{will-change:transform,opacity;}`;
+    document.head.appendChild(style);
+  }
+
+  document.querySelectorAll(ROOTS).forEach((el) => {
+    if (el.dataset.revealLinesInit === "1") return;
+    if (el.closest(".sticky-nav")) return;
+    if (el.closest("[data-no-reveal]")) return;
+
+    el.dataset.revealLinesInit = "1";
+
+    wrapWords(el);
+    const lineWrappers = wrapLines(el);
+
+    if (!lineWrappers.length) {
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 85%",
+        once: true,
+        onEnter: () => gsap.fromTo(el, {opacity:0,y:12},{opacity:1,y:0,duration:0.7,ease:"power2.inOut"})
+      });
+      return;
+    }
+
+    gsap.set(lineWrappers, { opacity: 0, y: 20 });
+    ScrollTrigger.create({
+      trigger: el,
+      start: "top 85%",
+      once: true,
+      onEnter: () => {
+        gsap.to(lineWrappers, {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          ease: "power2.inOut",
+          stagger: 0.12
+        });
+      }
+    });
+  });
+
+  let to;
+  window.addEventListener("resize", () => {
+    clearTimeout(to);
+    to = setTimeout(() => ScrollTrigger.refresh(), 150);
+  }, { passive: true });
+});
+</script>
+
+<style id="page-fade-css">
+  .page-fade{
+    position:fixed; inset:0; background:#000;
+    opacity:1; transition:opacity .35s ease;
+    z-index:999999; pointer-events:auto;
+  }
+  .page-fade.hidden{ opacity:0; pointer-events:none; }
+  .noscroll{ overflow:hidden; }
+</style>
+
+<script>
+(function () {
+  // Create overlay early so first paint is black, then fade out
+  let overlay = document.querySelector('.page-fade');
+  if (!overlay) {
+    overlay = document.createElement('div');
+    overlay.className = 'page-fade'; // visible on first paint
+    document.documentElement.classList.add('noscroll');
+    if (document.body) document.body.appendChild(overlay);
+    else document.addEventListener('DOMContentLoaded', () => document.body.appendChild(overlay));
+  }
+
+  function fade(toHidden){
+    return new Promise((resolve)=>{
+      const el = overlay;
+      if(!el){ resolve(); return; }
+      let done = false;
+      const finish = ()=>{ if(!done){ done = true; el.removeEventListener('transitionend', onEnd); resolve(); } };
+      const onEnd = (e)=>{ if(e.target === el) finish(); };
+      el.addEventListener('transitionend', onEnd);
+      const dur = parseFloat(getComputedStyle(el).transitionDuration || "0") * 1000 || 350;
+      setTimeout(finish, dur + 80); // fallback in case transitionend doesn't fire
+      requestAnimationFrame(()=> el.classList.toggle('hidden', toHidden));
+    });
+  }
+
+  // Reveal page on load (from black to content)
+  function revealOnLoad(){
+    fade(true).then(()=> document.documentElement.classList.remove('noscroll'));
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', revealOnLoad);
+  } else {
+    revealOnLoad();
+  }
+  window.addEventListener('pageshow', (e)=>{ if (e.persisted) revealOnLoad(); });
+
+  // Click-to-fade for real navigations only (skip hashes, mailto, etc.)
+  let navigating = false;
+  document.addEventListener('click', async (e)=>{
+    if (navigating) return;
+
+    const a = e.target.closest('a[href]');
+    if (!a) return;
+
+    // per-link opt-out
+    if (a.dataset.noFade !== undefined) return;
+
+    // raw href checks first
+    const raw = (a.getAttribute('href') || '').trim();
+    if (
+      !raw ||                      // empty
+      raw === '#' ||               // plain hash
+      raw.startsWith('#') ||       // hash-only link
+      raw.startsWith('javascript:') ||
+      raw.startsWith('tel:') ||
+      raw.startsWith('mailto:')
+    ) return;
+
+    // new tab / modifier keys
+    if ((a.target && a.target.toLowerCase() === '_blank') ||
+        e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
+
+    // same-origin full navigation only
+    const url = new URL(raw, location.href);
+    const sameOrigin = url.origin === location.origin;
+
+    // same-page hash like "/path#id"
+    const isSamePageHash = !!url.hash &&
+      url.pathname === location.pathname &&
+      url.search   === location.search;
+
+    if (!sameOrigin || isSamePageHash) return;
+
+    // Intercept and fade to black
+    e.preventDefault();
+    navigating = true;
+
+    document.documentElement.classList.add('noscroll');
+    overlay.classList.remove('hidden'); // ensure visible before fading
+
+    await Promise.race([
+      fade(false),
+      new Promise(r=>setTimeout(r, 700)) // cap so clicks never stall
+    ]);
+
+    window.scrollTo(0, 0);
+    location.assign(url.href);
+  }, { capture: true });
+
+  // Always force scroll top on unload
+  window.onbeforeunload = () => { window.scrollTo(0, 0); };
+})();
+</script><style>
+  /* optional: style the list + active state */
+  .section-nav .nav-list { list-style: none; margin: 0;}
+  .section-nav .nav-list li { margin: 0 0 1em; }
+  .section-nav .nav-list a { text-decoration: none; }
+</style>
+
+<script>
+(function () {
+  const HEADING_SELECTOR = "h2[id], h1[id]";
+  const SCOPE = document.querySelector(".block.content-scroll-page");
+  if (!SCOPE) return;
+
+  const contentEl = SCOPE.querySelector(".content");
+  const navWrap   = SCOPE.querySelector("#section-nav .sticky-nav");
+  if (!contentEl || !navWrap) return;
+
+  const usedIds = new Set();
+  function slugify(text) {
+    return text
+      .toLowerCase()
+      .trim()
+      .replace(/&/g, "and")
+      .replace(/[^a-z0-9\s-]/g, "")
+      .replace(/\s+/g, "-")
+      .replace(/-+/g, "-");
+  }
+  function ensureId(el) {
+    let id = el.getAttribute("id");
+    if (!id || id === "") {
+      id = slugify(el.textContent || "section");
+      let base = id, i = 2;
+      while (usedIds.has(id) || document.getElementById(id)) {
+        id = base + "-" + i++;
+      }
+      el.id = id;
+    }
+    usedIds.add(el.id);
+    return el.id;
+  }
+
+  const headings = Array.from(contentEl.querySelectorAll(HEADING_SELECTOR))
+    .filter(h => (h.textContent || "").trim().length > 0);
+
+  if (!headings.length) return;
+
+  const ul = document.createElement("ul");
+  ul.className = "nav-list";
+
+  const linkById = new Map();
+
+  headings.forEach(h => {
+    const id = ensureId(h);
+    // Trim whitespace and strip trailing period(s)
+    let title = (h.textContent || "").trim().replace(/\.+$/, "");
+
+    const li = document.createElement("li");
+    const a  = document.createElement("a");
+    a.className = "font-sm bold section-link";
+    a.href = "#" + id;
+    a.textContent = title;
+
+    a.addEventListener("click", function (e) {
+      if (this.pathname !== location.pathname) return;
+      e.preventDefault();
+      const target = document.getElementById(id);
+      if (target) {
+        const y = target.getBoundingClientRect().top + window.scrollY - 150;
+        window.scrollTo({ top: y, behavior: "smooth" });
+        history.replaceState(null, "", "#" + id);
+      }
+    });
+
+    linkById.set(id, a);
+    li.appendChild(a);
+    ul.appendChild(li);
+  });
+
+  navWrap.innerHTML = "";
+  navWrap.appendChild(ul);
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      const id = entry.target.id;
+      const link = linkById.get(id);
+      if (!link) return;
+      if (entry.isIntersecting) {
+        ul.querySelectorAll("a.is-active").forEach(el => el.classList.remove("is-active"));
+        link.classList.add("is-active");
+      }
+    });
+  }, {
+    root: null,
+    rootMargin: "-150px 0px -80% 0px",
+    threshold: 0
+  });
+
+  headings.forEach(h => observer.observe(h));
+})();
+</script></body></html>

@@ -1,0 +1,8 @@
+# All web crawlers are allowed to access the entire site
+User-agent: *
+# No index all pdf
+Disallow:
+Allow: /assets/
+
+# Specify the location of the sitemap
+Sitemap: https://maxidogetoken.com/sitemap.xml
